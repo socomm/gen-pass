@@ -55,10 +55,10 @@ def gen_pass(p, l, s):
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits
 
-    for i in range(passwords):
+    for i in xrange(passwords):
         my_pw.append([
                     ''.join(random.SystemRandom(time.time()).choice(chars)
-                    for _ in range(length))
+                    for _ in xrange(length))
                     ])
 
     # Print password to console.
