@@ -64,4 +64,5 @@ def gen_pass(p, l, s):
     # Print password to console.
     print '\n'.join(''.join(elems) for elems in my_pw)
 
-gen_pass()
+if __name__ == '__main__':
+	gen_pass()
