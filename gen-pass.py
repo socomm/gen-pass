@@ -26,7 +26,6 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 
-import os
 import random
 import click
 import string
@@ -34,35 +33,41 @@ import time
 
 @click.command()
 @click.option("-p", default=1,
-                help="Number of passwords to generate. One password by\
-                 default.")
+              help="Number of passwords to generate. One password by\
+              default.")
 @click.option("-l", default=8,
-                help="Password length. Ten characters by default.")
+              help="Password length. Ten characters by default.")
 @click.option("-s", is_flag=True,
-                help="Include special characters (punctuations). Excluded by\
-                 default.")
+              help="Include special characters (punctuations). Excluded by\
+              default.")
+@click.option("-n", is_flag=True, help="Numbers only password. Ideal for PINs.")
 
-def gen_pass(p, l, s):
+def gen_pass(p, l, s, n):
+    ''' Random password generator. '''
     length = l
     passwords = p
     my_pw = list()
 
-    # Include special characters (punctuations) if the '-s' flag is specified.
-    if s:
+    if n:
+        # Generate numeric only password
+        chars = string.digits
+    elif s:
+        # Generate password containing alphanumeric and punctuations.
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits + string.punctuation
     else:
+        # Generate alphanumeric password.
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits
 
-    for i in xrange(passwords):
+    for _ in xrange(passwords):
         my_pw.append([
-                    ''.join(random.SystemRandom(time.time()).choice(chars)
+            ''.join(random.SystemRandom(time.time()).choice(chars)
                     for _ in xrange(length))
-                    ])
+            ])
 
     # Print password to console.
     print '\n'.join(''.join(elems) for elems in my_pw)
 
 if __name__ == '__main__':
-	gen_pass()
+    gen_pass()

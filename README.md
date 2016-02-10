@@ -6,16 +6,16 @@
 
 1. Password length specification.
 2. Ability to in/exclude special characters (punctuations).
+3. Generate numeric PIN/Passwords.
 
 ### Dependencies:
 
 This script makes use of the following python modules:
 
-1. os
-2. random
-3. click
-4. string
-5. time
+1. random
+2. click
+3. string
+4. time
 
 ### Usage:
 
@@ -26,4 +26,5 @@ Parameters supported by this script include:
 | `-P INTEGER`         | Number of passwords to generate. One password by default. |
 | `-l INTEGER`         | Password length. Ten characters by default. |
 | `-s`                 | Include special characters (punctuations). Excluded by default. |
+| `-n`                 | Numbers only password. Ideal for PINs. |
 | `--help`             | Show help message and exit.             |
