@@ -46,12 +46,15 @@ def gen_pass(p, l, s, n):
     ''' Random password generator. '''
     length = l
     passwords = p
+    special = s
+    numonly = n
+
     my_pw = list()
 
-    if n:
+    if numonly:
         # Generate numeric only password
         chars = string.digits
-    elif s:
+    elif special:
         # Generate password containing alphanumeric and punctuations.
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits + string.punctuation
