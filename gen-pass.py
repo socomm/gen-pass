@@ -44,17 +44,14 @@ import time
 
 def gen_pass(p, l, s, n):
     ''' Random password generator. '''
-    length = l
-    passwords = p
-    special = s
-    numonly = n
-
+    pass_dict = dict(zip(['length', 'passwords', 'special', 'numonly'], 
+                        [l, p, s, n]))
     my_pw = list()
 
-    if numonly:
+    if pass_dict['numonly']:
         # Generate numeric only password
         chars = string.digits
-    elif special:
+    elif pass_dict['special']:
         # Generate password containing alphanumeric and punctuations.
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits + string.punctuation
@@ -63,10 +60,10 @@ def gen_pass(p, l, s, n):
         chars = string.ascii_lowercase + string.ascii_uppercase + \
                 string.digits
 
-    for _ in xrange(passwords):
+    for _ in xrange(pass_dict['passwords']):
         my_pw.append([
             ''.join(random.SystemRandom(time.time()).choice(chars)
-                    for _ in xrange(length))
+                    for _ in xrange(pass_dict['length']))
             ])
 
     # Print password to console.
